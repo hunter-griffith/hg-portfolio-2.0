@@ -1,0 +1,345 @@
+@import url("./colors_and_type.css");
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: var(--hg-black); color: var(--fg); min-height: 100vh; }
+body { overflow-x: hidden; }
+img { max-width: 100%; display: block; }
+button { font-family: inherit; }
+
+/* Page transitions */
+.page-fade {
+  animation: pageFade 680ms var(--ease-cinema);
+}
+@keyframes pageFade {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Hero text reveal */
+.hero-reveal {
+  animation: heroReveal 1200ms var(--ease-cinema) both;
+}
+@keyframes heroReveal {
+  from { opacity: 0; transform: translateY(14px); letter-spacing: -0.02em; }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.hero-reveal-late {
+  animation: heroReveal 1200ms var(--ease-cinema) 280ms both;
+}
+
+/* Filmic still placeholders (used for hero video stand-in) */
+.still {
+  position: relative;
+  background: linear-gradient(135deg, #2a2218, #07060a);
+  overflow: hidden;
+}
+.still::before {
+  content: "";
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(60% 80% at 30% 70%, rgba(201, 162, 75, 0.32), transparent 60%),
+    radial-gradient(40% 60% at 80% 30%, rgba(120, 80, 50, 0.25), transparent 60%);
+}
+.still--cool::before {
+  background:
+    radial-gradient(50% 70% at 30% 60%, rgba(90, 110, 130, 0.32), transparent 60%),
+    radial-gradient(40% 60% at 75% 30%, rgba(60, 70, 90, 0.32), transparent 60%);
+}
+.still--mono::before {
+  background:
+    radial-gradient(60% 80% at 30% 70%, rgba(220, 220, 230, 0.18), transparent 60%),
+    radial-gradient(40% 60% at 80% 30%, rgba(180, 180, 195, 0.08), transparent 60%);
+  filter: grayscale(1);
+}
+.grain {
+  position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='1.4' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.6 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  mix-blend-mode: screen;
+  opacity: 0.10;
+  pointer-events: none;
+}
+
+/* Underline sweep on links */
+.link-sweep {
+  position: relative;
+  display: inline-block;
+}
+.link-sweep::after {
+  content: "";
+  position: absolute; left: 0; right: 0; bottom: -3px;
+  height: 1px;
+  background: var(--hg-chrome-200);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 320ms var(--ease-cinema);
+}
+.link-sweep:hover::after { transform: scaleX(1); }
+
+/* Chrome divider */
+.chrome-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--hg-chrome-200) 50%, transparent);
+}
+
+/* Form input */
+.hg-input {
+  width: 100%;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--hg-smoke);
+  padding: 14px 0;
+  color: var(--fg);
+  font-family: var(--font-mono);
+  font-size: 15px;
+  outline: none;
+  transition: border-color 320ms var(--ease-cinema);
+}
+.hg-input:focus { border-bottom-color: var(--hg-chrome-200); }
+.hg-input::placeholder { color: var(--hg-ash); }
+
+/* Hover bracket animation on grid tiles */
+.bracket {
+  position: absolute;
+  width: 18px; height: 18px;
+  opacity: 0;
+  transition: opacity 320ms var(--ease-cinema);
+  pointer-events: none;
+}
+.tile:hover .bracket { opacity: 1; }
+.bracket.tl { top: 12px; left: 12px; border-top: 1px solid var(--hg-chrome-200); border-left: 1px solid var(--hg-chrome-200); }
+.bracket.tr { top: 12px; right: 12px; border-top: 1px solid var(--hg-chrome-200); border-right: 1px solid var(--hg-chrome-200); }
+.bracket.bl { bottom: 12px; left: 12px; border-bottom: 1px solid var(--hg-chrome-200); border-left: 1px solid var(--hg-chrome-200); }
+.bracket.br { bottom: 12px; right: 12px; border-bottom: 1px solid var(--hg-chrome-200); border-right: 1px solid var(--hg-chrome-200); }
+
+/* Tile thumb hover */
+.tile-thumb {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  border: 1px solid var(--hg-smoke);
+  background: var(--hg-ink);
+  transition: border-color 320ms var(--ease-cinema), filter 320ms var(--ease-cinema);
+  will-change: filter;
+}
+.tile:hover .tile-thumb {
+  border-color: rgba(232,230,225,0.18);
+  filter: brightness(1.06);
+}
+.tile-thumb iframe, .tile-thumb img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  border: 0;
+}
+.tile-thumb-inner {
+  transition: transform 480ms var(--ease-cinema);
+  will-change: transform;
+}
+.tile:hover .tile-thumb-inner { transform: scale(1.02); }
+
+/* Blurb reveal under title */
+.tile-blurb {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 480ms var(--ease-cinema), opacity 320ms var(--ease-cinema), margin-top 320ms var(--ease-cinema);
+}
+.tile:hover .tile-blurb {
+  max-height: 200px;
+  opacity: 1;
+  margin-top: 10px;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .hero-reveal, .hero-reveal-late, .page-fade { animation: none; }
+  *, *::before, *::after { transition-duration: 0.01ms !important; }
+}
+
+/* Scrollbar — subtle */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--hg-black); }
+::-webkit-scrollbar-thumb { background: var(--hg-smoke); border: 2px solid var(--hg-black); }
+::-webkit-scrollbar-thumb:hover { background: var(--hg-ash); }
+
+/* ── Photo masonry grid ──────────────────────────── */
+.photo-masonry {
+  column-count: 4;
+  column-gap: 8px;
+}
+.photo-item {
+  break-inside: avoid;
+  margin-bottom: 8px;
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+}
+.photo-item img {
+  width: 100%;
+  display: block;
+  transition: transform 480ms var(--ease-cinema), filter 320ms var(--ease-cinema);
+  filter: brightness(0.9) saturate(0.92);
+}
+.photo-item:hover img {
+  transform: scale(1.03);
+  filter: brightness(1.0) saturate(1.0);
+}
+
+/* Lightbox */
+.lightbox-overlay {
+  position: fixed; inset: 0; z-index: 200;
+  background: rgba(10,10,11,0.97);
+  display: flex; align-items: center; justify-content: center;
+  padding: 64px 0 24px;
+  animation: pageFade 200ms var(--ease-cinema);
+}
+
+/* ── Mobile (≤680px) ──────────────────────────────── */
+@media (max-width: 680px) {
+  /* Stack any 2-col grid to single column */
+  .mob-stack { grid-template-columns: 1fr !important; }
+
+  /* Sidebar: remove left border, add top border */
+  .mob-aside {
+    border-left: none !important;
+    padding-left: 0 !important;
+    border-top: 1px solid var(--hg-smoke);
+    padding-top: 28px;
+  }
+
+  /* Page top padding: shorter for smaller mobile nav */
+  .mob-page-top {
+    padding-top: 96px !important;
+  }
+
+  /* Work grid: hide the subtitle copy on mobile */
+  .mob-hide { display: none !important; }
+
+  /* Blurbs always visible on touch (no hover) */
+  .tile-blurb {
+    max-height: none !important;
+    opacity: 1 !important;
+    margin-top: 10px !important;
+  }
+
+  /* Footer: stack logo + copyright left, icon right */
+  .mob-footer { grid-template-columns: 1fr auto !important; }
+
+  /* Photo grid: 2 columns on mobile */
+  .photo-masonry { column-count: 2 !important; }
+
+  /* ── Cover image hero ─────────────────────────── */
+  /* Enforce minimum height so heading text fits */
+  .cover-hero {
+    min-height: 300px !important;
+  }
+
+  /* ── Global mobile type fixes ─────────────────── */
+
+  /* Page section headings (About, Contact, Photography) */
+  h1 {
+    font-size: clamp(28px, 9vw, 56px) !important;
+    letter-spacing: -0.03em !important;
+    line-height: 1.0 !important;
+  }
+
+  /* Work grid heading */
+  h2 {
+    font-size: clamp(32px, 9vw, 56px) !important;
+  }
+
+  /* Tile titles */
+  h3 {
+    font-size: clamp(16px, 4.2vw, 22px) !important;
+  }
+
+  /* Tile caption label — prevent overflow on narrow tiles */
+  .tile-label {
+    font-size: 10px !important;
+    letter-spacing: 0.14em !important;
+    white-space: normal !important;
+    text-align: right;
+    max-width: 120px;
+  }
+
+  /* Section eyebrow labels — slightly looser spacing on narrow screens */
+  section > div:first-child,
+  section > header > div:first-child {
+    letter-spacing: 0.18em !important;
+  }
+
+  /* Tile grid: single column on mobile */
+  .mob-stack[style*="repeat(2"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Work grid header: left-align + tighter spacing on mobile */
+  #work header {
+    text-align: left;
+    margin-bottom: 24px !important;
+  }
+  #work > .chrome-divider {
+    margin-bottom: 32px !important;
+  }
+
+  /* Hero bottom meta: hide scroll hint, let left text breathe */
+  .hero-scroll-hint { display: none !important; }
+
+  /* Hero: 1:1 crop on mobile */
+  .hero-section {
+    height: auto !important;
+    min-height: unset !important;
+    aspect-ratio: 1 / 1 !important;
+  }
+
+  /* Hero bottom meta: center on mobile */
+  .hero-meta {
+    justify-content: center !important;
+  }
+  .hero-meta > div:first-child {
+    text-align: center !important;
+  }
+
+  /* About/Contact bio paragraphs */
+  p {
+    font-size: clamp(14px, 4vw, 18px) !important;
+    line-height: 1.65 !important;
+  }
+
+  /* Lightbox arrows smaller */
+  .lightbox-prev, .lightbox-next {
+    padding: 0 12px !important;
+    font-size: 32px !important;
+  }
+
+  /* Photo masonry gap tighter */
+  .photo-masonry {
+    column-gap: 4px !important;
+  }
+  .photo-item {
+    margin-bottom: 4px !important;
+  }
+
+  /* ── Contact form submit row ──────────────────── */
+  .submit-row {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 16px !important;
+  }
+  .submit-row button {
+    width: 100% !important;
+    text-align: center !important;
+    padding: 14px 20px !important;
+    font-size: 11px !important;
+  }
+
+  /* Form project-type pill buttons — smaller on mobile */
+  .hg-input { font-size: 14px !important; }
+
+  /* Reduce work section padding on mobile */
+  #work {
+    padding-left: clamp(16px, 5vw, 48px) !important;
+    padding-right: clamp(16px, 5vw, 48px) !important;
+  }
+}

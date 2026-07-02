@@ -1,0 +1,296 @@
+/* ============================================================
+   Hunter Griffith Visual Media — Foundations
+   Color + Type tokens for a cinematic creatives portfolio.
+   ============================================================ */
+
+/* --- Webfonts ---------------------------------------------- */
+@font-face {
+  font-family: "Geist Mono";
+  font-weight: 100;
+  font-style: normal;
+  src: url("./fonts/GeistMono-Thin.otf") format("opentype");
+  font-display: swap;
+}
+@font-face {
+  font-family: "Geist Mono";
+  font-weight: 200;
+  font-style: normal;
+  src: url("./fonts/GeistMono-UltraLight.otf") format("opentype");
+  font-display: swap;
+}
+@font-face {
+  font-family: "Geist Mono";
+  font-weight: 300;
+  font-style: normal;
+  src: url("./fonts/GeistMono-Light.otf") format("opentype");
+  font-display: swap;
+}
+@font-face {
+  font-family: "Geist Mono";
+  font-weight: 400;
+  font-style: normal;
+  src: url("./fonts/GeistMono-Regular.otf") format("opentype");
+  font-display: swap;
+}
+@font-face {
+  font-family: "Geist Mono";
+  font-weight: 500;
+  font-style: normal;
+  src: url("./fonts/GeistMono-Medium.otf") format("opentype");
+  font-display: swap;
+}
+@font-face {
+  font-family: "Geist Mono";
+  font-weight: 600;
+  font-style: normal;
+  src: url("./fonts/GeistMono-SemiBold.otf") format("opentype");
+  font-display: swap;
+}
+@font-face {
+  font-family: "Geist Mono";
+  font-weight: 700;
+  font-style: normal;
+  src: url("./fonts/GeistMono-Bold.otf") format("opentype");
+  font-display: swap;
+}
+@font-face {
+  font-family: "Geist Mono";
+  font-weight: 800;
+  font-style: normal;
+  src: url("./fonts/GeistMono-Black.otf") format("opentype");
+  font-display: swap;
+}
+@font-face {
+  font-family: "Geist Mono";
+  font-weight: 900;
+  font-style: normal;
+  src: url("./fonts/GeistMono-UltraBlack.otf") format("opentype");
+  font-display: swap;
+}
+
+/* --- Tokens ------------------------------------------------ */
+:root {
+  /* Core palette — film-stock blacks, paper whites, chrome accents */
+  --hg-black:        #0A0A0B;   /* true canvas background */
+  --hg-ink:          #111114;   /* slightly lifted black for cards */
+  --hg-graphite:     #1A1A1E;   /* elevated surface */
+  --hg-smoke:        #2A2A2F;   /* hairline, divider, inset */
+  --hg-ash:          #4A4A52;   /* muted text, captions on dark */
+  --hg-steel:        #8A8A93;   /* secondary text */
+  --hg-fog:          #B8B8BF;   /* tertiary text / labels */
+  --hg-bone:         #E8E6E1;   /* warm off-white, primary text on dark */
+  --hg-paper:        #F5F3EE;   /* warm canvas for light surfaces */
+  --hg-pure:         #FFFFFF;
+
+  /* Chrome — the brand accent. Use sparingly: borders, highlights, the mark. */
+  --hg-chrome-100:   #E5E7EB;
+  --hg-chrome-200:   #C7CCD4;
+  --hg-chrome-300:   #9BA2AD;   /* mid chrome */
+  --hg-chrome-400:   #6E7682;
+  --hg-chrome-500:   #4A515C;
+  --hg-chrome-grad:  linear-gradient(135deg, #DDE2E8 0%, #8A92A0 22%, #C9CFD7 48%, #5A6270 72%, #B8BFC8 100%);
+
+  /* Semantic aliases — prefer these in components */
+  --bg:              var(--hg-black);
+  --bg-elev:         var(--hg-ink);
+  --bg-elev-2:       var(--hg-graphite);
+  --surface-line:    var(--hg-smoke);
+  --fg:              var(--hg-bone);
+  --fg-muted:        var(--hg-fog);
+  --fg-subtle:       var(--hg-steel);
+  --fg-faint:        var(--hg-ash);
+  --accent:          var(--hg-chrome-200);
+  --accent-grad:     var(--hg-chrome-grad);
+
+  /* Status (rarely used; kept neutral and filmic) */
+  --status-positive: #8FA67A;
+  --status-warning:  #C9A24B;
+  --status-error:    #B85B4E;
+
+  /* --- Type scale ----------------------------------------- */
+  --font-mono:    "Geist Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --font-display: "Geist Mono", ui-monospace, monospace;        /* same family, used heavy + tracked */
+  --font-script:  "Snell Roundhand", "Apple Chancery", cursive; /* echoes the HG monogram; decorative only */
+
+  --fs-eyebrow: 11px;
+  --fs-label:   12px;
+  --fs-caption: 13px;
+  --fs-body:    15px;
+  --fs-lead:    18px;
+  --fs-h6:      18px;
+  --fs-h5:      22px;
+  --fs-h4:      28px;
+  --fs-h3:      36px;
+  --fs-h2:      52px;
+  --fs-h1:      72px;
+  --fs-display: 112px;
+
+  --lh-tight: 1.05;
+  --lh-snug:  1.2;
+  --lh-base:  1.55;
+  --lh-loose: 1.75;
+
+  --tr-tight:  -0.02em;
+  --tr-snug:   -0.01em;
+  --tr-normal:  0em;
+  --tr-wide:    0.08em;
+  --tr-eyebrow: 0.22em;   /* the brand's signature wide-tracked uppercase */
+
+  /* --- Spacing (4px base) -------------------------------- */
+  --sp-1:   4px;
+  --sp-2:   8px;
+  --sp-3:   12px;
+  --sp-4:   16px;
+  --sp-5:   24px;
+  --sp-6:   32px;
+  --sp-7:   48px;
+  --sp-8:   64px;
+  --sp-9:   96px;
+  --sp-10: 128px;
+
+  /* --- Radii — minimal, mostly square ------------------- */
+  --r-0:  0px;
+  --r-1:  2px;
+  --r-2:  4px;
+  --r-3:  8px;
+  --r-pill: 999px;
+
+  /* --- Borders ------------------------------------------ */
+  --border-hairline: 1px solid var(--hg-smoke);
+  --border-soft:     1px solid rgba(232, 230, 225, 0.08);
+  --border-bone:     1px solid rgba(232, 230, 225, 0.18);
+
+  /* --- Shadows / glow — restrained, mostly inner ------- */
+  --shadow-1: 0 1px 0 rgba(255,255,255,0.04) inset, 0 1px 2px rgba(0,0,0,0.5);
+  --shadow-2: 0 1px 0 rgba(255,255,255,0.05) inset, 0 8px 24px rgba(0,0,0,0.45);
+  --shadow-3: 0 1px 0 rgba(255,255,255,0.06) inset, 0 24px 60px rgba(0,0,0,0.6);
+  --shadow-chrome: 0 0 0 1px rgba(199, 204, 212, 0.18), 0 8px 32px rgba(0,0,0,0.55);
+
+  /* --- Motion ------------------------------------------ */
+  --ease-cinema:  cubic-bezier(0.22, 1, 0.36, 1);   /* slow-out, used for reveals */
+  --ease-soft:    cubic-bezier(0.4, 0, 0.2, 1);
+  --dur-fast:     180ms;
+  --dur-base:     320ms;
+  --dur-slow:     680ms;
+  --dur-cine:     1200ms;
+}
+
+/* --- Semantic typographic rules --------------------------- */
+html, body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-mono);
+  font-weight: 400;
+  font-size: var(--fs-body);
+  line-height: var(--lh-base);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+.hg-eyebrow {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: var(--fs-eyebrow);
+  letter-spacing: var(--tr-eyebrow);
+  text-transform: uppercase;
+  color: var(--fg-subtle);
+}
+
+.hg-label {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: var(--fs-label);
+  letter-spacing: var(--tr-wide);
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+
+.hg-caption {
+  font-family: var(--font-mono);
+  font-weight: 400;
+  font-size: var(--fs-caption);
+  color: var(--fg-subtle);
+  letter-spacing: var(--tr-normal);
+}
+
+.hg-body {
+  font-family: var(--font-mono);
+  font-weight: 400;
+  font-size: var(--fs-body);
+  line-height: var(--lh-base);
+  color: var(--fg);
+}
+
+.hg-lead {
+  font-family: var(--font-mono);
+  font-weight: 300;
+  font-size: var(--fs-lead);
+  line-height: var(--lh-base);
+  color: var(--fg);
+  letter-spacing: var(--tr-snug);
+}
+
+.hg-h1, h1.hg, .hg-h1 {
+  font-family: var(--font-display);
+  font-weight: 200;            /* large, light + tightly tracked: cinematic title card */
+  font-size: var(--fs-h1);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--tr-tight);
+  color: var(--fg);
+  text-transform: uppercase;
+}
+
+.hg-h2 {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: var(--fs-h2);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--tr-tight);
+  color: var(--fg);
+  text-transform: uppercase;
+}
+
+.hg-h3 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: var(--fs-h3);
+  line-height: var(--lh-snug);
+  letter-spacing: var(--tr-snug);
+  color: var(--fg);
+}
+
+.hg-h4 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: var(--fs-h4);
+  line-height: var(--lh-snug);
+  letter-spacing: var(--tr-normal);
+  color: var(--fg);
+}
+
+.hg-display {
+  font-family: var(--font-display);
+  font-weight: 100;            /* ultra-thin, set huge — title sequence energy */
+  font-size: var(--fs-display);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  color: var(--fg);
+}
+
+.hg-mono-tag {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: var(--tr-eyebrow);
+  text-transform: uppercase;
+  color: var(--fg-subtle);
+}
+
+/* The decorative "HG" signature script — used only as a soft watermark/echo */
+.hg-script {
+  font-family: var(--font-script);
+  font-weight: 400;
+  font-style: italic;
+}
