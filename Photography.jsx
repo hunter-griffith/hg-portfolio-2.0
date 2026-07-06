@@ -36,6 +36,9 @@ const PRODUCT_PHOTOS = [
   { src: "product%20photography/Hollow-Lattice-Midsoles-4_compressed.jpg",               alt: "Hollow Lattice Midsoles" },
   { src: "product%20photography/puma-midsole-L1-printing-7_compressed.jpg",              alt: "Puma Midsole L1 Printing" },
   { src: "product%20photography/puma-mcu-neutral-banner-01_compressed.jpg",              alt: "Puma MCU Neutral Banner" },
+  { src: "product%20photography/MOBA-on-shelf-01_compressed.jpg",                        alt: "Modern Barrel Co. Vessel" },
+  { src: "product%20photography/MOBA-on-shelf-06_compressed.jpg",                        alt: "Modern Barrel Co. Vessel with Barrel" },
+  { src: "product%20photography/MOBA-in-action-15_compressed.jpg",                       alt: "Modern Barrel Co. Aging Detail" },
 ];
 
 const LANDSCAPE_PHOTOS = [
@@ -47,6 +50,9 @@ const LANDSCAPE_PHOTOS = [
   { src: "landscape%20photography/DJI_0234_compressed.jpg",                                          alt: "Aerial" },
   { src: "landscape%20photography/Kauai-Wedding-AcePro2-8_compressed.jpg",                           alt: "Kauai" },
   { src: "landscape%20photography/Crater%20Lake_compressed.jpg",                                     alt: "Crater Lake" },
+  { src: "landscape%20photography/Firefall%202-Adobe%20RGB_compressed.jpg",                          alt: "Yosemite Firefall" },
+  { src: "landscape%20photography/yosemite-fall-2023-22_compressed.jpg",                             alt: "Half Dome" },
+  { src: "landscape%20photography/Manor-anamorphic-crop_compressed.jpg",                             alt: "Pacifica Coast" },
   { src: "landscape%20photography/NUDE%20BOWL_compressed.jpg",                                       alt: "Nude Bowl" },
   { src: "landscape%20photography/Sunrise%20in%20the%20Valley-El%20CAP-DARK%20TREES_18x24_compressed.jpg", alt: "El Capitan Sunrise" },
   { src: "landscape%20photography/Windy%20Hill_compressed.jpg",                                      alt: "Windy Hill" },
