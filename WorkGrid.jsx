@@ -5,7 +5,8 @@ function ReelTile({ project, index }) {
   const [inView, setInView] = React.useState(false);
   const tileRef = React.useRef(null);
 
-  // Mobile scroll-reveal: mark tile in-view once it enters the viewport
+  // Mobile scroll-reveal: blurb slides open while the tile is in view,
+  // retracts once you scroll past it (toggles both directions)
   React.useEffect(() => {
     const el = tileRef.current;
     if (!el || !("IntersectionObserver" in window)) {
@@ -13,13 +14,8 @@ function ReelTile({ project, index }) {
       return;
     }
     const io = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setInView(true);
-          io.disconnect();
-        }
-      },
-      { threshold: 0.3, rootMargin: "0px 0px -12% 0px" }
+      ([entry]) => setInView(entry.isIntersecting),
+      { threshold: 0.35, rootMargin: "-8% 0px -8% 0px" }
     );
     io.observe(el);
     return () => io.disconnect();

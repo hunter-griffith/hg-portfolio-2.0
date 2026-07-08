@@ -218,23 +218,31 @@ button { font-family: inherit; }
   /* Work grid: hide the subtitle copy on mobile */
   .mob-hide { display: none !important; }
 
-  /* Blurbs collapsed on touch; reveal smoothly as the tile scrolls into view */
+  /* Blurbs collapsed on touch; slide down while tile is in view,
+     retract again once you scroll past — easy ease both ways */
   .tile-blurb {
     max-height: 0;
     opacity: 0;
     margin-top: 0;
-    transform: translateY(12px);
+    transform: translateY(-10px);
+    /* retract: slightly quicker, fade out first so collapse feels clean */
     transition:
-      max-height 720ms var(--ease-cinema),
-      opacity 560ms var(--ease-soft) 120ms,
-      margin-top 720ms var(--ease-cinema),
-      transform 720ms var(--ease-cinema);
+      max-height 520ms var(--ease-soft),
+      opacity 280ms var(--ease-soft),
+      margin-top 520ms var(--ease-soft),
+      transform 520ms var(--ease-soft);
   }
   .tile-inview .tile-blurb {
     max-height: 480px;
     opacity: 1;
     margin-top: 10px;
     transform: translateY(0);
+    /* reveal: slide down into place */
+    transition:
+      max-height 680ms var(--ease-soft),
+      opacity 480ms var(--ease-soft) 100ms,
+      margin-top 680ms var(--ease-soft),
+      transform 680ms var(--ease-soft);
   }
 
   /* Footer: stack logo + copyright left, icon right */
