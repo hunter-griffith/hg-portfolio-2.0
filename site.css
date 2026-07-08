@@ -145,10 +145,12 @@ button { font-family: inherit; }
   overflow: hidden;
   transition: max-height 480ms var(--ease-cinema), opacity 320ms var(--ease-cinema), margin-top 320ms var(--ease-cinema);
 }
-.tile:hover .tile-blurb {
-  max-height: 200px;
-  opacity: 1;
-  margin-top: 10px;
+@media (hover: hover) {
+  .tile:hover .tile-blurb {
+    max-height: 200px;
+    opacity: 1;
+    margin-top: 10px;
+  }
 }
 
 /* Reduced motion */
@@ -216,11 +218,23 @@ button { font-family: inherit; }
   /* Work grid: hide the subtitle copy on mobile */
   .mob-hide { display: none !important; }
 
-  /* Blurbs always visible on touch (no hover) */
+  /* Blurbs collapsed on touch; reveal smoothly as the tile scrolls into view */
   .tile-blurb {
-    max-height: none !important;
-    opacity: 1 !important;
-    margin-top: 10px !important;
+    max-height: 0;
+    opacity: 0;
+    margin-top: 0;
+    transform: translateY(12px);
+    transition:
+      max-height 720ms var(--ease-cinema),
+      opacity 560ms var(--ease-soft) 120ms,
+      margin-top 720ms var(--ease-cinema),
+      transform 720ms var(--ease-cinema);
+  }
+  .tile-inview .tile-blurb {
+    max-height: 480px;
+    opacity: 1;
+    margin-top: 10px;
+    transform: translateY(0);
   }
 
   /* Footer: stack logo + copyright left, icon right */

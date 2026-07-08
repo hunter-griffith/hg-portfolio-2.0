@@ -2,6 +2,28 @@
 function ReelTile({ project, index }) {
   const [hover, setHover] = React.useState(false);
   const [loaded, setLoaded] = React.useState(false);
+  const [inView, setInView] = React.useState(false);
+  const tileRef = React.useRef(null);
+
+  // Mobile scroll-reveal: mark tile in-view once it enters the viewport
+  React.useEffect(() => {
+    const el = tileRef.current;
+    if (!el || !("IntersectionObserver" in window)) {
+      setInView(true);
+      return;
+    }
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInView(true);
+          io.disconnect();
+        }
+      },
+      { threshold: 0.3, rootMargin: "0px 0px -12% 0px" }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
   const [thumbSrc, setThumbSrc] = React.useState(
     project.customThumb || `https://i.ytimg.com/vi/${project.youtubeId}/maxresdefault.jpg`
   );
@@ -17,7 +39,8 @@ function ReelTile({ project, index }) {
 
   return (
     <article
-      className="tile"
+      ref={tileRef}
+      className={`tile${inView ? " tile-inview" : ""}`}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
       style={{ display: "flex", flexDirection: "column" }}
