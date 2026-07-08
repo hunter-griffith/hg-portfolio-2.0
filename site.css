@@ -337,15 +337,19 @@ button { font-family: inherit; }
   }
 
   /* ── Contact form submit row ──────────────────── */
+  /* Compact centered button, response note centered above it */
   .submit-row {
     flex-direction: column !important;
-    align-items: stretch !important;
+    align-items: center !important;
     gap: 16px !important;
   }
-  .submit-row button {
-    width: 100% !important;
+  .submit-row > div:first-child {
     text-align: center !important;
-    padding: 14px 20px !important;
+  }
+  .submit-row button {
+    width: auto !important;
+    text-align: center !important;
+    padding: 14px 36px !important;
     font-size: 11px !important;
   }
 

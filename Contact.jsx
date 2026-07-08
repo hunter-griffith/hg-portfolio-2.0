@@ -45,6 +45,7 @@ function Contact() {
   const gradRef = React.useRef(null);
 
   React.useEffect(() => {
+    const mq = window.matchMedia("(max-width: 680px)");
     let ticking = false;
     const onScroll = () => {
       if (ticking) return;
@@ -53,14 +54,21 @@ function Contact() {
         const img = imgRef.current;
         const grad = gradRef.current;
         if (img) {
-          const scrollY = window.scrollY;
-          const containerH = img.parentElement.offsetHeight;
-          const progress = Math.min(scrollY / containerH, 1);
-          const scale = 1 - progress * 0.22;
-          img.style.transform = `scale(${scale})`;
-          if (grad) {
-            const gradProgress = Math.min(Math.max(progress / 0.30, 0), 1);
-            grad.style.opacity = gradProgress;
+          // Mobile: no scroll-shrink — scaling exposed a sliver of background
+          // at the bottom edge of the cover. Keep the photo locked to frame.
+          if (mq.matches) {
+            img.style.transform = "none";
+            if (grad) grad.style.opacity = 0;
+          } else {
+            const scrollY = window.scrollY;
+            const containerH = img.parentElement.offsetHeight;
+            const progress = Math.min(scrollY / containerH, 1);
+            const scale = 1 - progress * 0.22;
+            img.style.transform = `scale(${scale})`;
+            if (grad) {
+              const gradProgress = Math.min(Math.max(progress / 0.30, 0), 1);
+              grad.style.opacity = gradProgress;
+            }
           }
         }
         ticking = false;
