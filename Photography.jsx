@@ -39,6 +39,9 @@ const PRODUCT_PHOTOS = [
   { src: "product%20photography/MOBA-on-shelf-01_compressed.jpg",                        alt: "Modern Barrel Co. Vessel" },
   { src: "product%20photography/MOBA-on-shelf-06_compressed.jpg",                        alt: "Modern Barrel Co. Vessel with Barrel" },
   { src: "product%20photography/MOBA-in-action-15_compressed.jpg",                       alt: "Modern Barrel Co. Aging Detail" },
+  { src: "product%20photography/hypsole-studio-1_compressed.jpg",                        alt: "Hypsole Studio" },
+  { src: "product%20photography/hypsole-studio-16_compressed.jpg",                       alt: "Hypsole Studio" },
+  { src: "product%20photography/hypsole-studio-17_compressed.jpg",                       alt: "Hypsole Studio" },
 ];
 
 const LANDSCAPE_PHOTOS = [
