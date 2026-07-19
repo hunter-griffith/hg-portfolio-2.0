@@ -46,6 +46,15 @@ const PROJECTS = [
     blurb: "Fast-paced social media spot celebrating the latest colorway of the adidas Climacool Laced shoe.",
   },
   {
+    slug: "running-cycle-tester",
+    title: "Running Cycle Tester: Carbon Materials Under Extreme Testing",
+    label: "INNOVATION FILM · 2025",
+    runtime: "",
+    role: "Cinematographer · Editor",
+    youtubeId: "c16W8Dh68EI",
+    blurb: "A look inside the running cycle test used to evaluate the durability of Carbon materials under repeated loading.",
+  },
+  {
     slug: "hiit-school",
     title: "HIIT School",
     label: "BRAND FILM · 2025",
