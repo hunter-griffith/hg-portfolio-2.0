@@ -1,4 +1,39 @@
 /* Footer.jsx — minimal mono footer */
+
+/* Social icons live here so the footer and the contact page stay identical.
+   Add a network once and it appears in both places. */
+const SOCIAL_LINKS = [
+  { label: "Instagram", href: "https://www.instagram.com",                     icon: "assets/icons/instagram-icon.webp" },
+  { label: "LinkedIn",  href: "https://www.linkedin.com/in/hunter-griffith/",  icon: "assets/icons/linkedin-icon.png" },
+];
+
+function SocialIcons({ size = 22, justify = "flex-end" }) {
+  return (
+    <div style={{ display: "flex", justifyContent: justify, alignItems: "center", gap: 10 }}>
+      {SOCIAL_LINKS.map((s) => (
+        <a
+          key={s.label}
+          href={s.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={s.label}
+          style={{
+            display: "inline-block", lineHeight: 0,
+            padding: 6,                 /* bigger tap target than the glyph */
+            touchAction: "manipulation",
+            WebkitTapHighlightColor: "transparent",
+            opacity: 0.65, transition: "opacity 280ms var(--ease-soft)",
+          }}
+          onMouseEnter={(e) => e.currentTarget.style.opacity = 1}
+          onMouseLeave={(e) => e.currentTarget.style.opacity = 0.65}
+        >
+          <img src={s.icon} alt={s.label} style={{ height: size, width: size, display: "block" }} />
+        </a>
+      ))}
+    </div>
+  );
+}
+
 function Footer({ onNavigate }) {
   return (
     <footer style={{
@@ -35,23 +70,12 @@ function Footer({ onNavigate }) {
         {/* Center: spacer */}
         <div />
 
-        {/* Right: Instagram only */}
-        <div style={{ display: "flex", justifyContent: "flex-end" }}>
-          <a
-            href="https://www.instagram.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ display: "inline-block", opacity: 0.65, transition: "opacity 280ms var(--ease-soft)" }}
-            onMouseEnter={(e) => e.currentTarget.style.opacity = 1}
-            onMouseLeave={(e) => e.currentTarget.style.opacity = 0.65}
-            aria-label="Instagram"
-          >
-            <img src="assets/icons/instagram-icon.webp" alt="Instagram" style={{ height: 22, width: 22, display: "block" }} />
-          </a>
-        </div>
+        {/* Right: social icons */}
+        <SocialIcons />
       </div>
     </footer>
   );
 }
 
 window.Footer = Footer;
+window.SocialIcons = SocialIcons;

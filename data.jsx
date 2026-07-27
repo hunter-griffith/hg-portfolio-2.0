@@ -88,7 +88,7 @@ const PROJECTS = [
     runtime: "",
     role: "Director · Cinematographer · Editor",
     youtubeId: "Aa3ApH57bec",
-    blurb: "Step inside Rosalind Bakery in the heart of Pacifica, California, where handcrafted croissants are made from scratch with precision, patience, and tradition. Named after founder Matt Kosoy's grandmother, Rosalind began as a passion project before opening its doors in 2019. This short video captures the craft behind one of the bakery's signature creations.",
+    blurb: "A look inside Rosalind Bakery in Pacifica, California, where a signature croissant is made from scratch with precision, patience, and tradition.",
   },
 ];
 

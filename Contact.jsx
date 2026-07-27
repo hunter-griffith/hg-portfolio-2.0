@@ -390,12 +390,18 @@ function Contact() {
           <ContactBlock label="Direct" lines={[
             { v: "huntergriffithmedia@gmail.com", href: "mailto:huntergriffithmedia@gmail.com" },
           ]} />
-          <ContactBlock label="LinkedIn" lines={[
-            { v: "hunter-griffith", href: "https://www.linkedin.com/in/hunter-griffith/" },
-          ]} />
-          <ContactBlock label="Available to Travel" lines={[
-            { v: "Pacifica, CA — worldwide" },
-          ]} />
+
+          {/* Same SocialIcons component the footer uses, so the two stay in sync */}
+          <div>
+            <div style={{
+              fontFamily: "var(--font-mono)", fontWeight: 500,
+              fontSize: 11, letterSpacing: "0.28em", textTransform: "uppercase",
+              color: "var(--fg-subtle)", marginBottom: 10,
+            }}>Social</div>
+            <div style={{ marginLeft: -6 }}>{/* offset the icon's tap padding */}
+              <SocialIcons justify="flex-start" />
+            </div>
+          </div>
         </aside>
       </div>
       </section>
