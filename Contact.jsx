@@ -7,6 +7,13 @@ function Contact() {
   });
   const [errors, setErrors] = React.useState({});
   const [status, setStatus] = React.useState("idle"); // idle | sending | sent | error
+  const [errorDetail, setErrorDetail] = React.useState("");
+
+  /* Synchronous guard — React state updates are async, so a ref is what
+     actually prevents a double-send when both the click handler and the
+     native form submit fire in the same tick. */
+  const busyRef = React.useRef(false);
+  const formRef = React.useRef(null);
 
   const set = (k) => (e) => setForm((f) => ({ ...f, [k]: e.target.value }));
 
@@ -20,25 +27,60 @@ function Contact() {
   };
 
   const onSubmit = (e) => {
-    e.preventDefault();
+    if (e) e.preventDefault();
+    if (busyRef.current) return;
+
     const errs = validate();
     setErrors(errs);
-    if (Object.keys(errs).length) return;
+    if (Object.keys(errs).length) {
+      // Scroll the first invalid field into view — on mobile the errors can
+      // sit above the fold and it just looks like nothing happened.
+      const el = formRef.current && formRef.current.querySelector(".hg-input");
+      if (el && el.scrollIntoView) el.scrollIntoView({ behavior: "smooth", block: "center" });
+      return;
+    }
+
+    busyRef.current = true;
     setStatus("sending");
+
+    /* FormData (multipart) rather than JSON: a JSON body forces a CORS
+       preflight OPTIONS request, which is what fails silently on some
+       mobile browsers / carrier proxies / content blockers. */
+    const fd = new FormData();
+    fd.append("name", form.name);
+    fd.append("email", form.email);
+    fd.append("project", form.project);
+    fd.append("budget", form.budget);
+    fd.append("timeline", form.timeline);
+    fd.append("message", form.message);
+    fd.append("_replyto", form.email);
+    fd.append("_subject", `New inquiry — ${form.name} (${form.project})`);
+
     fetch(FORMSPREE_ENDPOINT, {
       method: "POST",
-      headers: { "Content-Type": "application/json", "Accept": "application/json" },
-      body: JSON.stringify({
-        name: form.name,
-        email: form.email,
-        project: form.project,
-        budget: form.budget,
-        timeline: form.timeline,
-        message: form.message,
-      }),
+      body: fd,
+      headers: { Accept: "application/json" },
+      mode: "cors",
     })
-      .then((res) => res.ok ? setStatus("sent") : setStatus("error"))
-      .catch(() => setStatus("error"));
+      .then((res) =>
+        res.json().catch(() => ({})).then((data) => {
+          if (res.ok) {
+            setStatus("sent");
+          } else {
+            const msg =
+              (data.errors && data.errors.map((x) => x.message).join(", ")) ||
+              data.error ||
+              `Server responded ${res.status}`;
+            setErrorDetail(msg);
+            setStatus("error");
+          }
+        })
+      )
+      .catch((err) => {
+        setErrorDetail(err && err.message ? err.message : "Network request failed");
+        setStatus("error");
+      })
+      .finally(() => { busyRef.current = false; });
   };
 
   const imgRef = React.useRef(null);
@@ -102,8 +144,17 @@ function Contact() {
               huntergriffithmedia@gmail.com
             </a>
           </p>
-          <button onClick={() => setStatus("idle")} style={{
-            all: "unset", cursor: "pointer", marginTop: 40,
+          {errorDetail && (
+            <p style={{
+              fontFamily: "var(--font-mono)", fontWeight: 300, fontSize: 12,
+              lineHeight: 1.6, color: "var(--fg-faint)", marginTop: 16,
+            }}>{errorDetail}</p>
+          )}
+          <button onClick={() => { setErrorDetail(""); setStatus("idle"); }} style={{
+            appearance: "none", WebkitAppearance: "none",
+            background: "transparent", border: 0,
+            touchAction: "manipulation", minHeight: 44,
+            cursor: "pointer", marginTop: 40,
             fontFamily: "var(--font-mono)", fontWeight: 500, fontSize: 12,
             letterSpacing: "0.28em", textTransform: "uppercase",
             color: "var(--fg)", paddingBottom: 4, borderBottom: "1px solid var(--hg-chrome-200)",
@@ -150,7 +201,10 @@ function Contact() {
           <button
             onClick={() => { setStatus("idle"); setForm({ name: "", email: "", project: "Brand Film", budget: "", timeline: "", message: "" }); }}
             style={{
-              all: "unset", cursor: "pointer", marginTop: 48,
+              appearance: "none", WebkitAppearance: "none",
+              background: "transparent", border: 0,
+              touchAction: "manipulation", minHeight: 44,
+              cursor: "pointer", marginTop: 48,
               fontFamily: "var(--font-mono)", fontWeight: 500,
               fontSize: 12, letterSpacing: "0.28em", textTransform: "uppercase",
               color: "var(--fg)", paddingBottom: 4, borderBottom: "1px solid var(--hg-chrome-200)",
@@ -226,15 +280,24 @@ function Contact() {
         gap: "clamp(40px, 6vw, 96px)",
         alignItems: "start",
       }} className="mob-stack">
-        <form onSubmit={onSubmit} noValidate style={{ display: "flex", flexDirection: "column", gap: 36 }}>
+        <form
+          ref={formRef}
+          onSubmit={onSubmit}
+          action={FORMSPREE_ENDPOINT}
+          method="POST"
+          acceptCharset="UTF-8"
+          noValidate
+          style={{ display: "flex", flexDirection: "column", gap: 36 }}
+        >
           <Field label="Name" error={errors.name}>
-            <input className="hg-input" placeholder="Your name" value={form.name} onChange={set("name")} />
+            <input className="hg-input" name="name" autoComplete="name" placeholder="Your name" value={form.name} onChange={set("name")} />
           </Field>
           <Field label="Email" error={errors.email}>
-            <input className="hg-input" type="email" placeholder="you@studio.com" value={form.email} onChange={set("email")} />
+            <input className="hg-input" name="email" type="email" inputMode="email" autoComplete="email" autoCapitalize="none" autoCorrect="off" placeholder="you@studio.com" value={form.email} onChange={set("email")} />
           </Field>
 
           <Field label="Project Type">
+            <input type="hidden" name="project" value={form.project} />
             <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginTop: 6 }}>
               {PROJECT_TYPES.map((t) => {
                 const active = form.project === t;
@@ -262,16 +325,16 @@ function Contact() {
 
           <div className="mob-stack" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 36 }}>
             <Field label="Budget Range (optional)">
-              <input className="hg-input" placeholder="$500 – $25,000" value={form.budget} onChange={set("budget")} />
+              <input className="hg-input" name="budget" placeholder="$500 – $25,000" value={form.budget} onChange={set("budget")} />
             </Field>
             <Field label="Timeline (optional)">
-              <input className="hg-input" placeholder="Shoot mid-Q3" value={form.timeline} onChange={set("timeline")} />
+              <input className="hg-input" name="timeline" placeholder="Shoot mid-Q3" value={form.timeline} onChange={set("timeline")} />
             </Field>
           </div>
 
           <Field label="Project Brief" error={errors.message}>
             <textarea
-              className="hg-input" rows={6}
+              className="hg-input" name="message" rows={6}
               placeholder="A few sentences about the project, audience, and deliverables. References welcome."
               value={form.message} onChange={set("message")}
               style={{ resize: "vertical", minHeight: 140, paddingTop: 14 }}
@@ -285,13 +348,26 @@ function Contact() {
             }}>
               Response time usually within 2 business days.
             </div>
+            {/* NOTE: this button used `all: unset`, which strips the native
+                button appearance and drops it to `display: inline`. On iOS
+                Safari that combination can leave the control with a broken
+                hit area so taps never reach the form. Explicit resets keep
+                the look while preserving real button behaviour. */}
             <button
               type="submit" disabled={status === "sending"}
+              onClick={onSubmit}
               style={{
-                all: "unset", cursor: status === "sending" ? "default" : "pointer",
+                appearance: "none", WebkitAppearance: "none",
+                display: "inline-block", margin: 0,
+                cursor: status === "sending" ? "default" : "pointer",
                 padding: "16px 28px",
+                minHeight: 48,
+                touchAction: "manipulation",
+                WebkitTapHighlightColor: "transparent",
                 fontFamily: "var(--font-mono)", fontWeight: 500,
                 fontSize: 12, letterSpacing: "0.28em", textTransform: "uppercase",
+                lineHeight: 1.2, textAlign: "center", whiteSpace: "nowrap",
+                borderRadius: 0,
                 color: "var(--hg-black)", background: "var(--hg-bone)",
                 border: "1px solid var(--hg-bone)",
                 opacity: status === "sending" ? 0.6 : 1,

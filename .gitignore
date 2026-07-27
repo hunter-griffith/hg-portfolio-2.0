@@ -1,1 +1,29 @@
 .DS_Store
+node_modules/
+package-lock.json
+
+# Full-size camera originals.
+# Only the *_compressed.jpg web versions are referenced by the site, so the
+# originals are kept locally rather than shipped to the repo and to Vercel.
+film photography/*
+!film photography/*_compressed.jpg
+
+# New product/landscape originals (compressed versions are what ship)
+/landscape photography/DJI_0002.JPG
+/landscape photography/DJI_0021.JPG
+/landscape photography/DJI_0071.jpg
+/landscape photography/DJI_0109.jpg
+/landscape photography/DJI_0114.jpg
+/landscape photography/DJI_0171-v02_FULL SIZE.jpg
+/landscape photography/WAVES-ABOVE-desaturated-with Logo-HiRes.jpg
+/product photography/DSC02867.jpg
+/product photography/DSC02940.jpg
+/product photography/DSC02963.jpg
+/product photography/DSC04525.jpg
+/product photography/Rosalinds-HG-Photos-5.jpg
+/product photography/Rosalinds-HG-Photos-8.jpg
+/product photography/fp3d-workflow-image-01.jpg
+/product photography/pico-lithos-customer-visit-53.jpg
+/product photography/pico-lithos-customer-visit-55.jpg
+/product photography/sprint-ray-3x.jpg
+/product photography/tow cap-in hand-02.jpg

@@ -1,4 +1,4 @@
-/* Photography.jsx — product + landscape masonry grid with shared lightbox */
+/* Photography.jsx — product + landscape + film masonry grids with shared lightbox */
 
 const PRODUCT_PHOTOS = [
   { src: "product%20photography/FORWARD%202-Edit%20v01_compressed.jpg",                    alt: "Forward" },
@@ -10,7 +10,7 @@ const PRODUCT_PHOTOS = [
   { src: "product%20photography/riddell-axiom3d-lattice-pads-14_compressed.jpg",           alt: "Riddell Axiom 3D Pads" },
   { src: "product%20photography/riddell-axiom3d-lattice-pads-22_compressed.jpg",           alt: "Riddell Axiom 3D Pads 22" },
   { src: "product%20photography/schutt-f7-carbon-studio-5_compressed.jpg",                 alt: "Schutt F7 Carbon Studio" },
-  { src: "product%20photography/schutt-f7-hero-poster-v01_compressed.png",                 alt: "Schutt F7 Hero" },
+  { src: "product%20photography/schutt-f7-hero-poster-v01_compressed.jpg",                 alt: "Schutt F7 Hero" },
   { src: "product%20photography/4dfwd%20midsole%20m2%20wide-ig%20story_compressed.jpg",    alt: "4DFWD Midsole" },
   { src: "product%20photography/LV-gravity-11_compressed.jpg",                             alt: "LV Gravity 11" },
   { src: "product%20photography/LV-gravity-5_compressed.jpg",                              alt: "LV Gravity 5" },
@@ -42,6 +42,17 @@ const PRODUCT_PHOTOS = [
   { src: "product%20photography/hypsole-studio-1_compressed.jpg",                        alt: "Hypsole Studio" },
   { src: "product%20photography/hypsole-studio-16_compressed.jpg",                       alt: "Hypsole Studio" },
   { src: "product%20photography/hypsole-studio-17_compressed.jpg",                       alt: "Hypsole Studio" },
+  { src: "product%20photography/DSC02867_compressed.jpg",                                alt: "Automated Dispensing Array" },
+  { src: "product%20photography/DSC02940_compressed.jpg",                                alt: "Production Floor" },
+  { src: "product%20photography/DSC02963_compressed.jpg",                                alt: "Print Operator" },
+  { src: "product%20photography/DSC04525_compressed.jpg",                                alt: "Lattice Print Under UV" },
+  { src: "product%20photography/pico-lithos-customer-visit-53_compressed.jpg",           alt: "Pico Lithos Production" },
+  { src: "product%20photography/pico-lithos-customer-visit-55_compressed.jpg",           alt: "Pico Lithos Assembly Line" },
+  { src: "product%20photography/fp3d-workflow-image-01_compressed.jpg",                  alt: "Dental Appliance Workflow" },
+  { src: "product%20photography/sprint-ray-3x_compressed.jpg",                           alt: "SprintRay Aligner Triptych" },
+  { src: "product%20photography/tow%20cap-in%20hand-02_compressed.jpg",                  alt: "Toe Cap in Hand" },
+  { src: "product%20photography/Rosalinds-HG-Photos-5_compressed.jpg",                   alt: "Rosalind's Bakery" },
+  { src: "product%20photography/Rosalinds-HG-Photos-8_compressed.jpg",                   alt: "Rosalind's Bakery Bench" },
 ];
 
 const LANDSCAPE_PHOTOS = [
@@ -65,10 +76,76 @@ const LANDSCAPE_PHOTOS = [
   { src: "landscape%20photography/_DSC3841_compressed.jpg",                                          alt: "Landscape" },
   { src: "landscape%20photography/_DSC5537_compressed.jpg",                                          alt: "Landscape" },
   { src: "landscape%20photography/_DSC5617_compressed.jpg",                                          alt: "Landscape" },
+  { src: "landscape%20photography/DJI_0002_compressed.jpg",                                          alt: "Fog Bank Over the Beach" },
+  { src: "landscape%20photography/DJI_0021_compressed.jpg",                                          alt: "Coastline Aerial" },
+  { src: "landscape%20photography/DJI_0071_compressed.jpg",                                          alt: "Sunset Over the Neighborhood" },
+  { src: "landscape%20photography/DJI_0109_compressed.jpg",                                          alt: "Rocks and Surf" },
+  { src: "landscape%20photography/DJI_0114_compressed.jpg",                                          alt: "Sea Stacks From Above" },
+  { src: "landscape%20photography/DJI_0171-v02_FULL%20SIZE_compressed.jpg",                          alt: "Sunset Shoreline" },
+  { src: "landscape%20photography/WAVES-ABOVE-desaturated-with%20Logo-HiRes_compressed.jpg",         alt: "Waves From Above" },
 ];
 
-/* Flat array for lightbox navigation across both sections */
-const ALL_PHOTOS = [...PRODUCT_PHOTOS, ...LANDSCAPE_PHOTOS];
+const FILM_PHOTOS = [
+  { src: "film%20photography/000260660006_compressed.jpg", alt: "Crossing to Catalina" },
+  { src: "film%20photography/000260660007_compressed.jpg", alt: "Avalon From the Water" },
+  { src: "film%20photography/000260660013_compressed.jpg", alt: "Above Avalon" },
+  { src: "film%20photography/000260660017_compressed.jpg", alt: "Catalina Hillside" },
+  { src: "film%20photography/000260660022_compressed.jpg", alt: "Avalon Street" },
+  { src: "film%20photography/000260660030_compressed.jpg", alt: "Catalina Harbor" },
+  { src: "film%20photography/000260670004_compressed.jpg", alt: "Harborside" },
+  { src: "film%20photography/000260670007_compressed.jpg", alt: "Beach Club" },
+  { src: "film%20photography/000289700004_compressed.jpg", alt: "Pavilion Silhouette" },
+  { src: "film%20photography/000289700028_compressed.jpg", alt: "Morning Bowls" },
+  { src: "film%20photography/000289710028_compressed.jpg", alt: "Coastal Overlook" },
+  { src: "film%20photography/000304440004_compressed.jpg", alt: "Cathedral Rocks" },
+  { src: "film%20photography/000304440005_compressed.jpg", alt: "El Capitan" },
+  { src: "film%20photography/000304440006_compressed.jpg", alt: "Yosemite Meadow" },
+  { src: "film%20photography/000304440007_compressed.jpg", alt: "Valley Walls" },
+  { src: "film%20photography/000341610002_compressed.jpg", alt: "Campfire in the Redwoods" },
+  { src: "film%20photography/000341610003_compressed.jpg", alt: "Beach Picnic" },
+  { src: "film%20photography/000386780002_compressed.jpg", alt: "Driftwood" },
+  { src: "film%20photography/000386780004_compressed.jpg", alt: "Leaning Palm" },
+  { src: "film%20photography/000386780005_compressed.jpg", alt: "Palms and Shoreline" },
+  { src: "film%20photography/000386780007_compressed.jpg", alt: "Plantation House" },
+  { src: "film%20photography/000386780008_compressed.jpg", alt: "Double Exposure" },
+  { src: "film%20photography/000386790008_compressed.jpg", alt: "Under the Palms" },
+  { src: "film%20photography/000403910008_compressed.jpg", alt: "Ridgeline at Dusk" },
+  { src: "film%20photography/000411990004_compressed.jpg", alt: "Snowed In" },
+  { src: "film%20photography/000411990005_compressed.jpg", alt: "Alpenglow" },
+  { src: "film%20photography/000411990006_compressed.jpg", alt: "Winter Pines" },
+  { src: "film%20photography/000411990014_compressed.jpg", alt: "Snow Day" },
+  { src: "film%20photography/000417810001_compressed.jpg", alt: "Cannery Row" },
+  { src: "film%20photography/000417810004_compressed.jpg", alt: "Victorians and a Palm" },
+  { src: "film%20photography/000417810007_compressed.jpg", alt: "Fog on the Beach" },
+  { src: "film%20photography/000417810010_compressed.jpg", alt: "Empty Bowl" },
+  { src: "film%20photography/000417820001_compressed.jpg", alt: "Frontside" },
+  { src: "film%20photography/000417820005_compressed.jpg", alt: "Palms Through the Fence" },
+  { src: "film%20photography/000417830001_compressed.jpg", alt: "Mission Arches" },
+  { src: "film%20photography/000417840009_compressed.jpg", alt: "Light Leak" },
+  { src: "film%20photography/000417840012_compressed.jpg", alt: "Pines and Reflection" },
+  { src: "film%20photography/000447440001_compressed.jpg", alt: "The Shack" },
+  { src: "film%20photography/000447440003_compressed.jpg", alt: "Tahoe Shoreline" },
+  { src: "film%20photography/000447440019_compressed.jpg", alt: "Cliffside Houses" },
+  { src: "film%20photography/000468370002_compressed.jpg", alt: "Bluff Trail" },
+  { src: "film%20photography/000468370008_compressed.jpg", alt: "Afternoon on the Lawn" },
+  { src: "film%20photography/000476840008_compressed.jpg", alt: "In the Grass" },
+  { src: "film%20photography/000476860009_compressed.jpg", alt: "Overpass" },
+  { src: "film%20photography/000548160002_compressed.jpg", alt: "Tetons" },
+  { src: "film%20photography/000548160003_compressed.jpg", alt: "Tetons, Second Frame" },
+  { src: "film%20photography/000548160023_compressed.jpg", alt: "Grandstand" },
+  { src: "film%20photography/000548170003_compressed.jpg", alt: "Red Leak" },
+  { src: "film%20photography/000548170008_compressed.jpg", alt: "Horseback" },
+  { src: "film%20photography/000715100004_compressed.jpg", alt: "Tropical Coast" },
+  { src: "film%20photography/000715100016_compressed.jpg", alt: "Hanalei Palms" },
+  { src: "film%20photography/TAHOME-Winter%20Storm_compressed.jpg", alt: "Winter Storm" },
+  { src: "film%20photography/Watermelon%20Bowl_compressed.jpg", alt: "Watermelon Bowl" },
+  { src: "film%20photography/chit-chat-film-selects-1_compressed.jpg", alt: "Pier at Golden Hour" },
+  { src: "film%20photography/chit-chat-film-selects-2_compressed.jpg", alt: "Spray on the Jetty" },
+  { src: "film%20photography/sling-shot-edited_LR-mobile_compressed.jpg", alt: "Slingshot" },
+];
+
+/* Flat array for lightbox navigation across all sections */
+const ALL_PHOTOS = [...PRODUCT_PHOTOS, ...LANDSCAPE_PHOTOS, ...FILM_PHOTOS];
 
 function Photography() {
   const [lightbox, setLightbox] = React.useState(null);
@@ -165,9 +242,15 @@ function Photography() {
       </section>
 
       {/* Landscape section */}
-      <section style={{ padding: "0 clamp(24px, 6vw, 96px) clamp(64px, 10vh, 128px)" }}>
+      <section style={{ padding: "0 clamp(24px, 6vw, 96px) 0" }}>
         <SectionLabel title="LANDSCAPE PHOTOGRAPHY" sub="Landscape" />
         <PhotoGrid photos={LANDSCAPE_PHOTOS} offset={PRODUCT_PHOTOS.length} />
+      </section>
+
+      {/* Film section */}
+      <section style={{ padding: "0 clamp(24px, 6vw, 96px) clamp(64px, 10vh, 128px)" }}>
+        <SectionLabel title="FILM PHOTOGRAPHY" sub="Film" />
+        <PhotoGrid photos={FILM_PHOTOS} offset={PRODUCT_PHOTOS.length + LANDSCAPE_PHOTOS.length} />
       </section>
 
       {/* Lightbox */}
