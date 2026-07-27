@@ -3,7 +3,7 @@
 /* Social icons live here so the footer and the contact page stay identical.
    Add a network once and it appears in both places. */
 const SOCIAL_LINKS = [
-  { label: "Instagram", href: "https://www.instagram.com",                     icon: "assets/icons/instagram-icon.webp" },
+  { label: "Instagram", href: "https://www.instagram.com/hunter_g_accidently/", icon: "assets/icons/instagram-icon.webp" },
   { label: "LinkedIn",  href: "https://www.linkedin.com/in/hunter-griffith/",  icon: "assets/icons/linkedin-icon.png" },
 ];
 
