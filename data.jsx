@@ -90,6 +90,24 @@ const PROJECTS = [
     youtubeId: "Aa3ApH57bec",
     blurb: "A look inside Rosalind Bakery in Pacifica, California, where a signature croissant is made from scratch with precision, patience, and tradition.",
   },
+  {
+    slug: "grant-koniski-fluid-artist",
+    title: "Fluid Artist & Skateboarder: Grant Koniski",
+    label: "PROFILE FILM · 2026",
+    runtime: "",
+    role: "Director · Cinematographer · Editor",
+    youtubeId: "bS1ICEyvm6Y",
+    blurb: "Grant Koniski explores emotion and the human psyche through fluid acrylics, instinct, and controlled chaos. From building each canvas by hand to the final pour, his process is deeply personal and entirely one of a kind. This film offers a glimpse into the mindset and craftsmanship behind his work.",
+  },
+  {
+    slug: "ovial-surgical-nutrition",
+    title: "Ovial Surgical Nutrition",
+    label: "PRODUCT FILM · 2026",
+    runtime: "",
+    role: "Director · Cinematographer · Editor",
+    youtubeId: "U65WrruneLg",
+    blurb: "OVIAL needed a visual asset for its website that showcased both the product and how it fits into the surgical recovery process. The film highlights OVIAL's surgeon-formulated nutrition system through clean product imagery and real-world use, reinforcing its role in supporting the body before and after surgery.",
+  },
 ];
 
 window.PROJECTS = PROJECTS;

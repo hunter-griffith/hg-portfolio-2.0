@@ -53,6 +53,10 @@ const PRODUCT_PHOTOS = [
   { src: "product%20photography/tow%20cap-in%20hand-02_compressed.jpg",                  alt: "Toe Cap in Hand" },
   { src: "product%20photography/Rosalinds-HG-Photos-5_compressed.jpg",                   alt: "Rosalind's Bakery" },
   { src: "product%20photography/Rosalinds-HG-Photos-8_compressed.jpg",                   alt: "Rosalind's Bakery Bench" },
+  { src: "product%20photography/ovial-studio-3_compressed.jpg",                        alt: "OVIAL Studio" },
+  { src: "product%20photography/ovial-studio-57_compressed.jpg",                       alt: "OVIAL Studio" },
+  { src: "product%20photography/ovial-pre-packets-kitchen-2_compressed.jpg",           alt: "OVIAL Pre-Packets Kitchen" },
+  { src: "product%20photography/ovial-pre-packets-kitchen-5_compressed.jpg",           alt: "OVIAL Pre-Packets Kitchen" },
 ];
 
 const LANDSCAPE_PHOTOS = [
