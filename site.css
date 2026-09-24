@@ -238,8 +238,13 @@ button { font-family: inherit; }
     transform: translateY(0);
   }
 
-  /* Footer: stack logo + copyright left, icon right */
-  .mob-footer { grid-template-columns: 1fr auto !important; }
+  /* Footer: single row — copyright left, logo center, icons right */
+  .hg-footer-row { gap: 12px !important; }
+  .hg-footer-copy { font-size: 9px !important; letter-spacing: 0.12em !important; }
+  .hg-footer-logo { height: 22px !important; }
+  .hg-footer-social > div { gap: 2px !important; }
+  .hg-footer-social img { height: 18px !important; width: 18px !important; }
+  .hg-footer-social a { padding: 4px !important; }
 
   /* Photo grid: 2 columns on mobile */
   .photo-masonry { column-count: 2 !important; }
@@ -361,4 +366,9 @@ button { font-family: inherit; }
     padding-left: clamp(16px, 5vw, 48px) !important;
     padding-right: clamp(16px, 5vw, 48px) !important;
   }
+}
+
+@media (max-width: 360px) {
+  .hg-footer-row { gap: 8px !important; }
+  .hg-footer-copy { font-size: 8px !important; letter-spacing: 0.06em !important; }
 }

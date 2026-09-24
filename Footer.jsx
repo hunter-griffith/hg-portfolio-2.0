@@ -43,35 +43,36 @@ function Footer({ onNavigate }) {
     }}>
       <div className="chrome-divider" style={{ marginBottom: 56 }} />
 
-      <div style={{
+      <div className="hg-footer-row" style={{
         display: "grid",
         gridTemplateColumns: "1fr auto 1fr",
         alignItems: "center",
         gap: 32,
       }}>
-        {/* Left: logo (larger) + copyright */}
-        <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-          <button
-            onClick={() => onNavigate && onNavigate("WORK")}
-            style={{ all: "unset", cursor: "pointer", lineHeight: 0, display: "inline-block" }}
-            aria-label="Hunter Griffith — Home"
-          >
-            <img src="assets/hg-logo-chrome.png" alt="HG" style={{ height: 28 }} />
-          </button>
-          <div style={{
-            fontFamily: "var(--font-mono)", fontWeight: 500,
-            fontSize: 11, letterSpacing: "0.28em", textTransform: "uppercase",
-            color: "var(--fg-subtle)",
-          }}>
-            © 2026 Hunter Griffith
-          </div>
+        {/* Left: copyright */}
+        <div className="hg-footer-copy" style={{
+          justifySelf: "start",
+          whiteSpace: "nowrap",
+          fontFamily: "var(--font-mono)", fontWeight: 500,
+          fontSize: 11, letterSpacing: "0.28em", textTransform: "uppercase",
+          color: "var(--fg-subtle)",
+        }}>
+          © 2026 Hunter Griffith
         </div>
 
-        {/* Center: spacer */}
-        <div />
+        {/* Center: logo */}
+        <button
+          onClick={() => onNavigate && onNavigate("WORK")}
+          style={{ all: "unset", cursor: "pointer", lineHeight: 0, display: "inline-block", justifySelf: "center" }}
+          aria-label="Hunter Griffith — Home"
+        >
+          <img className="hg-footer-logo" src="assets/hg-logo-chrome.png" alt="HG" style={{ height: 28, display: "block" }} />
+        </button>
 
         {/* Right: social icons */}
-        <SocialIcons />
+        <div className="hg-footer-social" style={{ justifySelf: "end" }}>
+          <SocialIcons />
+        </div>
       </div>
     </footer>
   );
