@@ -106,7 +106,7 @@ const PROJECTS = [
     runtime: "",
     role: "Director · Cinematographer · Editor",
     youtubeId: "U65WrruneLg",
-    blurb: "OVIAL needed a visual asset for its website that showcased both the product and how it fits into the surgical recovery process. The film highlights OVIAL's surgeon-formulated nutrition system through clean product imagery and real-world use, reinforcing its role in supporting the body before and after surgery.",
+    blurb: "A website film for OVIAL's surgeon-formulated nutrition system, pairing clean product imagery with real-world use to show how it supports the body before and after surgery.",
   },
 ];
 
